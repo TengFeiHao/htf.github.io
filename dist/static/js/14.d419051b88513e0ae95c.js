@@ -1,0 +1,2 @@
+webpackJsonp([14],{dxDm:function(e,t,n){"use strict";Object.defineProperty(t,"__esModule",{value:!0});var r={render:function(){var e=this.$createElement;return(this._self._c||e)("div",[this._v("\n  SettlementMg\n")])},staticRenderFns:[]};var a=n("VU/8")({name:"SettlementMg",data:function(){return{}}},r,!1,function(e){n("qLLH")},"data-v-30e47e80",null);t.default=a.exports},qLLH:function(e,t){}});
+//# sourceMappingURL=14.d419051b88513e0ae95c.js.map
