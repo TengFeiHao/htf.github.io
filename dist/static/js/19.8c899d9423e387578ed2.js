@@ -1,2 +1,0 @@
-webpackJsonp([19],{"VIG/":function(n,e){},YAiT:function(n,e,t){"use strict";Object.defineProperty(e,"__esModule",{value:!0});var i={render:function(){var n=this.$createElement;return(this._self._c||n)("div",[this._v("\n  WishingMg\n")])},staticRenderFns:[]};var r=t("VU/8")({name:"WishingMg",data:function(){return{}}},i,!1,function(n){t("VIG/")},"data-v-056b7044",null);e.default=r.exports}});
-//# sourceMappingURL=19.8c899d9423e387578ed2.js.map
