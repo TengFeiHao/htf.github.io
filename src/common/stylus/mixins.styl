@@ -1,0 +1,37 @@
+// 通用样式类
+$bg = #F5F5F5
+html,body
+  width: 100%
+  height: 100%
+body, div, span, header, footer, nav, section, aside, article, ul, dl, dt, dd, li, a, p, h1, h2, h3, h4,h5, h6, i, b, textarea, button, input, select, figure, figcaption
+  padding 0
+  margin 0
+  list-style none
+  font-style normal
+  text-decoration none
+  border none
+  font-weight normal
+  font-family "Microsoft Yahei"
+  box-sizing border-box
+  -webkit-tap-highlight-colortransparent
+  -webkit-font-smoothing antialiased
+  &:hover
+    outline none
+.move-enter-active,
+.move-leave-active
+  transition: opacity .5s
+.move-enter
+.move-leave 
+  opacity: 0
+.lock-screen-back
+  border-radius: 50%;
+  z-index: -1;
+  box-shadow: 0 0 0 0 #667aa6 inset;
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  transition: all 3s;
+.divisionLine
+  height:1px;
+  background:linear-gradient(to right,#ebeef5,#b6b6b6,#ebeef5)
