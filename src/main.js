@@ -7,6 +7,10 @@ import {router} from './router'
 import vuescroll from 'vuescroll/dist/vuescroll-native'
 import 'vuescroll/dist/vuescroll.css'
 import '../src/common/fontIcon/iconfont.css'
+import VeLine from 'v-charts/lib/line.common'
+import 'v-charts/lib/style.css'
+import Vehistogram from 'v-charts/lib/histogram.common'
+import 'echarts/lib/component/dataZoom'
 import {
   Pagination,
   Dialog,
@@ -76,6 +80,8 @@ import {
   Message,
   Notification
 } from 'element-ui'
+Vue.component(VeLine.name, VeLine)
+Vue.component(Vehistogram.name, Vehistogram)
 Vue.use(vuescroll)
 Vue.use(Pagination)
 Vue.use(Dialog)

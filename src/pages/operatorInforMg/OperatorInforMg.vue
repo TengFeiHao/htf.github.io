@@ -21,18 +21,18 @@
         </el-select>
       </el-form-item>
       <el-form-item>
-        <el-button type="primary" @click="onSubmit">查询</el-button>
+        <el-button type="primary">查询</el-button>
         <el-button @click="resetForm('searchData')">重置</el-button>
       </el-form-item>
     </el-form>
     <div class="divisionLine"></div>
     <!-- 表格按钮 -->
     <div class="tableBtn">
-      <el-button type="primary" @click="onSubmit" size="small">新增</el-button>
-      <el-button size="small">重置密码</el-button>
-      <el-button type="primary" size="small">启用</el-button>
-      <el-button size="small">停用</el-button>
-      <el-button type="danger" size="small">删除</el-button>
+      <dia-log title="新增" mold='0'></dia-log>
+      <el-button type="danger" size="small" :disabled="multipleSelection.length===0 || delflag" @click="delamin">删除</el-button>
+      <el-button type="primary" size="small" :disabled="multipleSelection.length===0" @click="startUp">启用</el-button>
+      <el-button size="small" :disabled="multipleSelection.length===0" @click="stop">停用</el-button>
+      <el-button size="small" :disabled="multipleSelection.length===0" @click="resetPassword">重置密码</el-button>
     </div>
     <!-- 表格 -->
     <div class="tableContainer">
@@ -98,13 +98,15 @@
           align="center"
           width="160">
           <template slot-scope="scope">
-            <el-button
+            <!-- <el-button
               size="mini"
               type="primary"
-              @click="handleEdit(scope.$index, scope.row)">修改</el-button>
-            <el-button
+              @click="handleEdit(scope.$index, scope.row)">修改</el-button> -->
+              <dia-log title="修改" size='mini' mold='1'></dia-log>
+              <dia-log title="详情" size='mini' type=""  mold='2' mr='last'></dia-log>
+            <!-- <el-button
               size="mini"
-              @click="handleDetail(scope.$index, scope.row)">详情</el-button>
+              @click="handleDetail(scope.$index, scope.row)">详情</el-button> -->
           </template>
         </el-table-column>
       </el-table>
@@ -121,6 +123,7 @@
   </div>
 </template>
 <script>
+import DiaLog from './DiaLog'
 export default {
   name: 'OperatorInforMg',
   data () {
@@ -137,7 +140,7 @@ export default {
         phone: '15010726635',
         role: '医院专家',
         creatTime: '2018-08-26 11:16:34',
-        state: '启用',
+        state: '停用',
         currentTime: '2018-08-26 11:16:34'
       }, {
         account: 'T000002',
@@ -148,18 +151,80 @@ export default {
         state: '启用',
         currentTime: '2018-08-26 11:16:34'
       }],
-      currentPage: 2
+      currentPage: 2,
+      multipleSelection: [],
+      delflag: true
     }
   },
+  components: {
+    DiaLog
+  },
   methods: {
-    onSubmit () {
-      console.log('submit!')
-    },
     resetForm (formName) {
       this.$refs[formName].resetFields()
     },
     handleSelectionChange (val) {
       this.multipleSelection = val
+      this.delflag = false
+      this.multipleSelection.some((item) => {
+        if (item.state === '启用') {
+          this.delflag = true
+          return false
+        }
+      })
+    },
+    // 修改
+    handleEdit (param1, param2) {
+      alert(param1, param2)
+    },
+    // 详情
+    handleDetail (param1, param2) {
+      alert(param1, param2)
+    },
+    // 重置密码
+    resetPassword () {
+      this.$confirm('您确定要<span class="red">重置</span>被选中用户的密码吗？', {type: 'warning', dangerouslyUseHTMLString: true})
+        .then(_ => {
+          this.$message({
+            type: 'success',
+            message: '重置密码成功!'
+          })
+        })
+        .catch(_ => {})
+    },
+    // 停用
+    stop () {
+      this.$confirm('您确定要<span class="red">停用</span>被选中的用户吗？', {type: 'warning', dangerouslyUseHTMLString: true})
+        .then(_ => {
+          this.$message({
+            type: 'success',
+            message: '停用用户成功!'
+          })
+        })
+        .catch(_ => {})
+    },
+
+    // 启用
+    startUp () {
+      this.$confirm('您确定要<span class="red">启用</span>被选中的用户吗？', {type: 'warning', dangerouslyUseHTMLString: true})
+        .then(_ => {
+          this.$message({
+            type: 'success',
+            message: '启用用户成功!'
+          })
+        })
+        .catch(_ => {})
+    },
+    // 删除
+    delamin () {
+      this.$confirm('您确定要<span class="red">删除</span>被选中的用户吗？', {type: 'warning', dangerouslyUseHTMLString: true})
+        .then(_ => {
+          this.$message({
+            type: 'success',
+            message: '删除用户成功!'
+          })
+        })
+        .catch(_ => {})
     },
     // 分页
     handleSizeChange (val) {
@@ -174,13 +239,13 @@ export default {
 <style lang='stylus' ref='stylesheet/stylus'>
 .operatorInforMg
   .tableBtn
-    margin 18px 0;
+    margin 18px 0
   .tableContainer
     .el-table-column--selection
       .cell
-        padding-right 10px!important;
+        padding-right 10px!important
   .el-pagination
-    padding 0px!important;
-    text-align right;
+    padding 0px!important
+    text-align right
     margin-top 18px
 </style>

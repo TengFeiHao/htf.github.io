@@ -30,9 +30,7 @@
         <div class='child-dom'>
           <div class="ctx">
             <transition name="move" mode="out-in">
-              <keep-alive>
-                <router-view></router-view>
-              </keep-alive>
+              <router-view></router-view>
             </transition>
           </div>
         </div>

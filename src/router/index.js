@@ -23,19 +23,18 @@ router.beforeEach((to, from, next) => {
   } else if (Cookies.get('locking') === '0' && to.name === 'locking') {
     next(false)
   } else {
-    next()
-  //   if (!Cookies.get('userInfo') && to.name !== 'login' && to.name !== 'regist' && to.name !== 'regist-result' && to.name !== 'relate') { // 判断是否已经登录且前往的页面不是登录页
-  //     // next({
-  //     //   name: 'login'
-  //     // })
-  // } else if (Cookies.get('userInfo') && to.name === 'login') {
-  //     // 判断是否已经登录且前往的是登录页
-  //     Util.title();
-  //     next({
-  //       name: 'home'
-  //     })
-  //   } else {
-  //   }
+    if (!Cookies.get('userInfo') && to.name !== 'login') { // 判断是否已经登录且前往的页面不是登录页
+      next({
+        name: 'login'
+      })
+    } else if (Cookies.get('userInfo') && to.name === 'login') {
+      // 判断是否已经登录且前往的是登录页
+      next({
+        name: 'home'
+      })
+    } else {
+      next()
+    }
   }
 })
 router.afterEach(transition => {

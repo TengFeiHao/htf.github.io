@@ -4,6 +4,11 @@ export const routers = [
     redirect: '/home'
   },
   {
+    path: '/login',
+    name: 'login',
+    component: resolve => require(['../pages/login/login.vue'], resolve)
+  },
+  {
     path: '/',
     component: resolve => require(['../pages/container/Container.vue'], resolve),
     children: [

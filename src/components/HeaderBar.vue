@@ -21,13 +21,13 @@
     </div>
       <!-- 标签选项 -->
       <div class="leftBtn">
-        <el-dropdown placement="bottom">
+        <el-dropdown placement="bottom" @command="drowUser">
           <span class="el-dropdown-link">
             user<i class="el-icon-caret-bottom el-icon--right"></i>
           </span>
           <el-dropdown-menu slot="dropdown">
-            <el-dropdown-item command="a">修改密码</el-dropdown-item>
-            <el-dropdown-item command="b">退出登录</el-dropdown-item>
+            <el-dropdown-item command="edit">修改密码</el-dropdown-item>
+            <el-dropdown-item command="logout">退出登录</el-dropdown-item>
           </el-dropdown-menu>
         </el-dropdown>
       </div>
@@ -36,6 +36,7 @@
   </div>
 </template>
 <script>
+import Cookies from 'js-cookie'
 import { mapState, mapActions } from 'vuex'
 import LockScreen from '../pages/lockScreen/LockScreen'
 export default {
@@ -78,6 +79,16 @@ export default {
         }
       }
       this.fullscreen = !this.fullscreen
+    },
+    drowUser (flag) {
+      if (flag === 'edit') {
+        // 修改密码
+      } else if (flag === 'logout') {
+        // 退出登录
+        Cookies.remove('userInfo')
+        Cookies.set('last_page_name', this.$route.name)
+        this.$router.push({path: '/login'})
+      }
     }
   }
 }
