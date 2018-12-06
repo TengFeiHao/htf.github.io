@@ -111,7 +111,7 @@ export default {
         role: [
           { required: true, message: '请选择所属角色', trigger: 'change' }
         ]
-      }
+      },
     }
   },
   methods: {
@@ -153,19 +153,6 @@ export default {
 <style lang='stylus' ref='stylesheet/stylus'>
 .dialog
   display inline-block
-  .el-dialog
-    text-align left
-    position absolute
-    top 50%
-    left 50%
-    margin 0 !important
-    transform translate(-50%, -50%)
-    max-height calc(100% - 30px)
-    max-width calc(100% - 30px)
-    display flex
-    flex-direction column
-    &>.el-dialog__body
-      overflow auto
   .imageUrl
     .el-form-item__content
       line-height 0px

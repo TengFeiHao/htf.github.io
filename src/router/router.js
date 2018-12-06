@@ -52,16 +52,6 @@ export const routers = [
         }
       },
       {
-        name: 'memberScoreMg',
-        path: '/memberScoreMg',
-        component: resolve => require(['../pages/memberScoreMg/MemberScoreMg.vue'], resolve),
-        meta: {
-          list: '会员管理',
-          title: '会员积分管理',
-          path: '/memberScoreMg'
-        }
-      },
-      {
         name: 'memberLevelMg',
         path: '/memberLevelMg',
         component: resolve => require(['../pages/memberLevelMg/MemberLevelMg.vue'], resolve),
@@ -69,16 +59,6 @@ export const routers = [
           list: '会员管理',
           title: '会员等级管理',
           path: '/memberLevelMg'
-        }
-      },
-      {
-        name: 'memberEquityMg',
-        path: '/memberEquityMg',
-        component: resolve => require(['../pages/memberEquityMg/MemberEquityMg.vue'], resolve),
-        meta: {
-          list: '会员管理',
-          title: '会员权益管理',
-          path: '/memberEquityMg'
         }
       },
       {

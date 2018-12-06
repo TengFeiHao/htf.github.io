@@ -1,5 +1,5 @@
 <template>
-  <div class="dialog" :style="{'margin-right': mr==='last'?'0px':'10px'}">
+  <div class="dialogRole" :style="{'margin-right': mr==='last'?'0px':'10px'}">
     <el-button :type="type" @click="dialogFormVisible = true" :size="size">{{title}}</el-button>
     <el-dialog :title="title" :visible.sync="dialogFormVisible" @close="closeForm"  width="500px" top="0">
       <el-form :model="form" :rules="rules" ref="form" size="small" :label-width="formLabelWidth">
@@ -101,22 +101,9 @@ export default {
   }
 }
 </script>
-<style lang='stylus' ref='stylesheet/stylus'>
-.dialog
+<style lang='stylus' ref='stylesheet/stylus' scoped>
+.dialogRole
   display inline-block
-  .el-dialog
-    text-align left
-    position absolute
-    top 50%
-    left 50%
-    margin 0 !important
-    transform translate(-50%, -50%)
-    max-height calc(100% - 30px)
-    max-width calc(100% - 30px)
-    display flex
-    flex-direction column
-    &>.el-dialog__body
-      overflow auto
   .avatar-uploader
     display inline-block
     .el-upload

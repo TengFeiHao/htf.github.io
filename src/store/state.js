@@ -28,16 +28,8 @@ export default {
           title: '会员信息管理'
         },
         {
-          index: 'memberScoreMg',
-          title: '会员积分管理'
-        },
-        {
           index: 'memberLevelMg',
           title: '会员等级管理'
-        },
-        {
-          index: 'memberEquityMg',
-          title: '会员权益管理'
         }
       ]
     },

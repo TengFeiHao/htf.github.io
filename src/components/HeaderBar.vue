@@ -33,6 +33,24 @@
       </div>
       <img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1543136214224&di=8461231c4bd4f6af0e4c75d353fe619d&imgtype=0&src=http%3A%2F%2F5b0988e595225.cdn.sohucs.com%2Fimages%2F20171207%2F60918cbd27fe4642b2b68668f450abed.jpeg" alt="">
     </div>
+    <!-- 修改密码 -->
+    <el-dialog title="修改密码" :visible.sync="dialogFormVisible" @close="closeForm"  width="500px" top="0" :append-to-body='true'>
+      <el-form :model="form" :rules="rules" ref="form" size="small" label-width="93px">
+        <el-form-item label="原密码" prop="oldPassword">
+          <el-input type="password" :clearable="true" v-model="form.oldPassword" placeholder="请输入现在使用的密码"></el-input>
+        </el-form-item>
+        <el-form-item label="新密码" prop="newPassword">
+          <el-input type="password" :clearable="true" v-model="form.newPassword" placeholder="请输入新密码，长度为6-20个字符"></el-input>
+        </el-form-item>
+        <el-form-item label="确认新密码" prop="confirmPassword">
+          <el-input type="password" :clearable="true" v-model="form.confirmPassword" placeholder="请再次输入新密码"></el-input>
+        </el-form-item>
+      </el-form>
+      <div slot="footer" class="dialog-footer">
+        <el-button size="small" @click="closeForm">取 消</el-button>
+        <el-button size="small" type="primary" @click="submitForm('form')">确 定</el-button>
+      </div>
+    </el-dialog>
   </div>
 </template>
 <script>
@@ -42,8 +60,34 @@ import LockScreen from '../pages/lockScreen/LockScreen'
 export default {
   name: 'HeaderBar',
   data () {
+    let checkPassword = (rule, value, callback) => {
+      if (!value) {
+        return callback(new Error('请再次输入新密码'))
+      } else if (value !== this.form.newPassword) {
+        return callback(new Error('两次输入密码不一致'))
+      } else {
+        callback()
+      }
+    }
     return {
-      fullscreen: false
+      fullscreen: false,
+      dialogFormVisible: false,
+      form: {
+        oldPassword: '',
+        newPassword: '',
+        confirmPassword: ''
+      },
+      rules: {
+        oldPassword: [
+          { required: true, message: '请输入原密码', trigger: 'blur' }
+        ],
+        newPassword: [
+          { required: true, message: '请输入新密码', trigger: 'blur' }
+        ],
+        confirmPassword: [
+          { required: true, validator: checkPassword, trigger: 'blur' }
+        ]
+      }
     }
   },
   computed: {
@@ -83,12 +127,28 @@ export default {
     drowUser (flag) {
       if (flag === 'edit') {
         // 修改密码
+        this.dialogFormVisible = true
       } else if (flag === 'logout') {
         // 退出登录
         Cookies.remove('userInfo')
         Cookies.set('last_page_name', this.$route.name)
         this.$router.push({path: '/login'})
       }
+    },
+    // 关闭dialog
+    closeForm () {
+      this.$refs['form'].resetFields()
+      this.dialogFormVisible = false
+    },
+    submitForm (formName) {
+      this.$refs[formName].validate((valid) => {
+        if (valid) {
+          this.dialogFormVisible = false
+        } else {
+          console.log('error submit!!')
+          return false
+        }
+      })
     }
   }
 }
