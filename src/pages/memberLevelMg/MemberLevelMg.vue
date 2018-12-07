@@ -1,6 +1,6 @@
 <template>
   <div class="memberLevelMg">
-    <el-form :inline="true" :model="searchData" ref="searchData" class="demo-form-inline" size='small' label-width="82px">
+    <el-form :inline="true" :model="searchData" ref="searchData" class="demo-form-inline" size='small'>
       <el-form-item label="会员等级" prop="MGrade">
         <el-select v-model="searchData.MGrade" placeholder="请选择会员等级" clearable>
           <el-option label="全部" value="0"></el-option>
@@ -93,27 +93,27 @@ export default {
       tableData: [{
         level: '普卡',
         consumption: '0.00~1,499.99',
-        purchase: '298.00',
-      },{
+        purchase: '298.00'
+      }, {
         level: '金卡',
         consumption: '1,500.00~4,499.99',
-        purchase: '2928.00',
+        purchase: '2928.00'
       }, {
         level: '白金卡',
         consumption: '4,500.00~9,499.99',
-        purchase: '2982.00',
+        purchase: '2982.00'
       }, {
         level: '钻石卡',
         consumption: '9,500.00+',
-        purchase: '29228.00',
+        purchase: '29228.00'
       }, {
         level: '黑卡',
         consumption: '-',
-        purchase: '298.00',
+        purchase: '298.00'
       }, {
         level: 'Plus会员',
         consumption: '-',
-        purchase: '298.00',
+        purchase: '298.00'
       }],
       currentPage: 2,
       multipleSelection: [],
@@ -129,11 +129,11 @@ export default {
     },
     // 删除
     del (arg) {
-      this.$confirm('您确定要<span class="red">删除</span>会员等级<span class="red">['+arg.level+']</span>吗？', {type: 'warning', dangerouslyUseHTMLString: true})
+      this.$confirm('您确定要<span class="red">删除</span>会员等级<span class="red">[' + arg.level + ']</span>吗？', {type: 'warning', dangerouslyUseHTMLString: true})
         .then(_ => {
           this.$message({
             type: 'success',
-            message: '删除会员等级 ['+ arg.level +'] 成功!'
+            message: '删除会员等级 [' + arg.level + '] 成功!'
           })
         })
         .catch(_ => {})
@@ -161,4 +161,3 @@ export default {
     text-align right
     margin-top 18px
 </style>
-

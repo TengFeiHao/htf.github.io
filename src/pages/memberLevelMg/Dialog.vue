@@ -7,8 +7,8 @@
           <el-input :clearable="true" v-model="form.level" placeholder="请输入会员等级"></el-input>
         </el-form-item>
         <el-form-item label="规则类型" prop="mRule">
-          <el-select 
-            :clearable="true" 
+          <el-select
+            :clearable="true"
             v-model="form.mRule"
             @change="select"
             placeholder="请选择规则类型">
@@ -22,7 +22,7 @@
         </el-form-item>
         <el-form-item v-if="growUp" label="成长值范围" prop="start">
           <el-input :clearable="true" v-model="form.start" style="width:134px"></el-input>
-          <span>=< 成长值<=</span>
+          <span>=&lt;成长值&lt;=</span>
         </el-form-item>
         <el-form-item v-if="growUp" label="" prop="end" style="position:absolute;right:20px;bottom:92px">
           <el-input :clearable="true" v-model="form.end" style="width:134px;"></el-input>
@@ -37,14 +37,14 @@
 </template>
 <script>
 export default {
-  name: 'Dialog',
+  name: 'DialogLevel',
   props: {
     title: {
       type: String
     },
     size: {
       type: String,
-      default: "small"
+      default: 'small'
     }
   },
   data () {
@@ -57,7 +57,7 @@ export default {
         mRule: '',
         money: '',
         start: '',
-        end: '',
+        end: ''
       },
       formLabelWidth: '96px',
       rules: {
@@ -82,17 +82,17 @@ export default {
   methods: {
     // 下拉框
     select (val) {
-      if(val == 1) {
+      if (val === '1') {
         // 购买
         this.buyFlag = true
         this.growUp = false
         this.$refs.form.clearValidate()
-      }else if(val == 2) {
+      } else if (val === '2') {
         // 成长
         this.growUp = true
         this.buyFlag = false
         this.$refs.form.clearValidate()
-      }else if(val == 3) {
+      } else if (val === '3') {
         // 无
         this.buyFlag = false
         this.growUp = false

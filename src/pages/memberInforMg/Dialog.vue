@@ -58,7 +58,7 @@
 </template>
 <script>
 export default {
-  name: 'Dialog',
+  name: 'DialogMinfoMg',
   props: {
     title: {
       type: String
@@ -66,7 +66,7 @@ export default {
   },
   data () {
     return {
-      dialogFormVisible: false,
+      dialogFormVisible: false
     }
   },
   methods: {
@@ -76,8 +76,8 @@ export default {
     },
     // 刷票
     brush () {
-      this.$emit('brush','传值')
-    } 
+      this.$emit('brush', '传值')
+    }
   }
 }
 </script>

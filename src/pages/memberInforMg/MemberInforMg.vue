@@ -1,6 +1,6 @@
 <template>
   <div class="memberInforMg">
-    <el-form :inline="true" :model="searchData" ref="searchData" class="demo-form-inline" size='small' label-width="82px">
+    <el-form :inline="true" :model="searchData" ref="searchData" class="demo-form-inline" size='small' label-width="68px">
       <el-form-item label="昵称" prop="name">
         <el-input v-model="searchData.name" placeholder="请输入昵称" clearable></el-input>
       </el-form-item>

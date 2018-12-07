@@ -49,7 +49,7 @@ export default {
         if (valid) {
           Cookies.set('userInfo', 'htf', { expires: 1 })
           this.$router.push({
-            name: Cookies.get('last_page_name') // 解锁之后跳转到锁屏之前的页面
+            name: 'home' // 解锁之后跳转到锁屏之前的页面
           })
         } else {
           console.log('error submit!!')
