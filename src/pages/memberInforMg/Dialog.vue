@@ -1,7 +1,7 @@
 <template>
   <div class="dialogMinfoMg" style="margin-right: 0px">
     <el-button @click="dialogFormVisible = true" size="mini">{{title}}</el-button>
-    <el-dialog :title="title" :visible.sync="dialogFormVisible" @close="closeForm"  width="500px" top="0">
+    <el-dialog :close-on-click-modal='false' :close-on-press-escape='false' :title="title" :visible.sync="dialogFormVisible" @close="closeForm"  width="500px" top="0">
       <table border="1" width="100%"  cellspacing="0"  align="center">
         <tbody>
           <tr>

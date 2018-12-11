@@ -1,10 +1,10 @@
 <template>
   <div class="dialogRole" :style="{'margin-right': mr==='last'?'0px':'10px'}">
     <el-button :type="type" @click="dialogFormVisible = true" :size="size">{{title}}</el-button>
-    <el-dialog :title="title" :visible.sync="dialogFormVisible" @close="closeForm"  width="500px" top="0">
+    <el-dialog :close-on-click-modal='false' :close-on-press-escape='false' :title="title" :visible.sync="dialogFormVisible" @close="closeForm"  width="500px" top="0">
       <el-form :model="form" :rules="rules" ref="form" size="small" :label-width="formLabelWidth">
         <el-form-item label="角色名称" prop="name">
-          <el-input :disabled="mold==='2'"  :clearable="true" v-model="form.name" placeholder="请输入角色名称"></el-input>
+          <el-input :disabled="mold==='2'"  :clearable="true" v-model.trim="form.name" placeholder="请输入角色名称"></el-input>
         </el-form-item>
         <el-form-item label="权限配置" prop="quanxian" ref="upload">
           <el-tree
@@ -16,13 +16,13 @@
           </el-tree>
         </el-form-item>
         <el-form-item v-if="mold!=='0'" label="启用" prop="startUp">
-          <el-switch  :disabled="mold!=='1'" v-model="form.startUp"></el-switch>
+          <el-switch  :disabled="mold!=='1'" v-model.trim="form.startUp"></el-switch>
         </el-form-item>
         <el-form-item v-if="mold!=='0' && mold!=='1'" label="更新时间" prop="endTime">
-          <el-input :disabled="true" v-model="form.endTime"></el-input>
+          <el-input :disabled="true" v-model.trim="form.endTime"></el-input>
         </el-form-item>
         <el-form-item v-if="mold!=='0' && mold!=='1'" label="操作员" prop="user">
-          <el-input :disabled="true" v-model="form.user"></el-input>
+          <el-input :disabled="true" v-model.trim="form.user"></el-input>
         </el-form-item>
       </el-form>
       <div slot="footer" class="dialog-footer">

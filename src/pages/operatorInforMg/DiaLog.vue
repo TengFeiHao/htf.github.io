@@ -1,16 +1,16 @@
 <template>
   <div class="dialogOper" :style="{'margin-right': mr==='last'?'0px':'10px'}">
     <el-button :type="type" @click="dialogFormVisible = true" :size="size">{{title}}</el-button>
-    <el-dialog :title="title" :visible.sync="dialogFormVisible" @close="closeForm"  width="500px" top="0">
+    <el-dialog :close-on-click-modal='false' :close-on-press-escape='false' :title="title" :visible.sync="dialogFormVisible" @close="closeForm"  width="500px" top="0">
       <el-form :model="form" :rules="rules" ref="form" size="small" :label-width="formLabelWidth">
         <el-form-item label="操作员账号" prop="admin">
           <el-input :disabled="mold==='1' || mold==='2'" :clearable="true" v-model="form.admin" placeholder="请输入操作员账号"></el-input>
         </el-form-item>
         <el-form-item label="姓名" prop="name">
-          <el-input :disabled="mold==='2'"  :clearable="true" v-model="form.name" placeholder="请输入姓名"></el-input>
+          <el-input :disabled="mold==='2'"  :clearable="true" v-model.trim="form.name" placeholder="请输入姓名"></el-input>
         </el-form-item>
         <el-form-item label="手机号" prop="phone">
-          <el-input :disabled="mold==='2'" :clearable="true" v-model="form.phone" placeholder="请输入手机号"></el-input>
+          <el-input :disabled="mold==='2'" :clearable="true" v-model.trim="form.phone" placeholder="请输入手机号"></el-input>
         </el-form-item>
         <el-form-item label="头像" prop="imageUrl" ref="upload" class="imageUrl">
           <el-upload
@@ -26,29 +26,29 @@
           </el-upload>
         </el-form-item>
         <el-form-item label="所属角色" prop="role">
-          <el-select :disabled="mold==='2'" :clearable="true" v-model="form.role" placeholder="请选择所属角色">
+          <el-select :disabled="mold==='2'" :clearable="true" v-model.trim="form.role" placeholder="请选择所属角色">
             <el-option label="角色一" value="shanghai"></el-option>
             <el-option label="角色二" value="beijing"></el-option>
           </el-select>
         </el-form-item>
         <el-form-item label="启用" prop="startUp">
-          <el-switch  :disabled="mold =='2'" v-model="form.startUp"></el-switch>
+          <el-switch  :disabled="mold =='2'" v-model.trim="form.startUp"></el-switch>
         </el-form-item>
         <el-form-item label="备注" prop="remarks">
           <el-input
             :disabled="mold==='2'"
             :clearable="true"
-            v-model="form.remarks"
+            v-model.trim="form.remarks"
             resize="none"
             type="textarea"
             :rows="3"
             placeholder="请输入备注"></el-input>
         </el-form-item>
         <el-form-item v-if="mold!=='0' && mold!=='1'" label="创建时间" prop="startTime">
-          <el-input :disabled="true" v-model="form.startTime"></el-input>
+          <el-input :disabled="true" v-model.trim="form.startTime"></el-input>
         </el-form-item>
         <el-form-item v-if="mold!=='0' && mold!=='1'" label="最近登录时间" prop="endTime">
-          <el-input :disabled="true" v-model="form.endTime"></el-input>
+          <el-input :disabled="true" v-model.trim="form.endTime"></el-input>
         </el-form-item>
       </el-form>
       <div slot="footer" class="dialog-footer">

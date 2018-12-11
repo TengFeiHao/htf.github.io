@@ -34,16 +34,16 @@
       <img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1543136214224&di=8461231c4bd4f6af0e4c75d353fe619d&imgtype=0&src=http%3A%2F%2F5b0988e595225.cdn.sohucs.com%2Fimages%2F20171207%2F60918cbd27fe4642b2b68668f450abed.jpeg" alt="">
     </div>
     <!-- 修改密码 -->
-    <el-dialog title="修改密码" :visible.sync="dialogFormVisible" @close="closeForm"  width="500px" top="0" :append-to-body='true'>
+    <el-dialog :close-on-click-modal='false' :close-on-press-escape='false' title="修改密码" :visible.sync="dialogFormVisible" @close="closeForm"  width="500px" top="0" :append-to-body='true'>
       <el-form :model="form" :rules="rules" ref="form" size="small" label-width="93px">
         <el-form-item label="原密码" prop="oldPassword">
-          <el-input type="password" :clearable="true" v-model="form.oldPassword" placeholder="请输入现在使用的密码"></el-input>
+          <el-input type="password" :clearable="true" v-model.trim="form.oldPassword" placeholder="请输入现在使用的密码"></el-input>
         </el-form-item>
         <el-form-item label="新密码" prop="newPassword">
-          <el-input type="password" :clearable="true" v-model="form.newPassword" placeholder="请输入新密码，长度为6-20个字符"></el-input>
+          <el-input type="password" :clearable="true" v-model.trim="form.newPassword" placeholder="请输入新密码，长度为6-20个字符"></el-input>
         </el-form-item>
         <el-form-item label="确认新密码" prop="confirmPassword">
-          <el-input type="password" :clearable="true" v-model="form.confirmPassword" placeholder="请再次输入新密码"></el-input>
+          <el-input type="password" :clearable="true" v-model.trim="form.confirmPassword" placeholder="请再次输入新密码"></el-input>
         </el-form-item>
       </el-form>
       <div slot="footer" class="dialog-footer">

@@ -1,13 +1,13 @@
 <template>
   <div class="dialogProDic" :style="{'margin-right': mr==='last'?'0px':'10px'}">
-    <el-button :type="type" @click="dialogFormVisible = true" :size="size">{{title}}</el-button>
-    <el-dialog :title="title" :visible.sync="dialogFormVisible" @close="closeForm"  width="700px" top="0">
+    <el-button :type="type" @click="init" :size="size">{{title}}</el-button>
+    <el-dialog :close-on-click-modal='false' :close-on-press-escape='false' :title="title" :visible.sync="dialogFormVisible" @close="closeForm"  width="700px" top="0">
       <el-form :inline="true" :model="form" ref="form" size="small" class="formTop">
         <el-form-item label="字段" prop="field">
-          <el-input class="width250" :disabled="true" v-model="form.field"></el-input>
+          <el-input class="width250" :disabled="true" v-model.trim="form.field"></el-input>
         </el-form-item>
         <el-form-item label="字段名" prop="fieldName">
-          <el-input class="width250" :disabled="true" v-model="form.fieldName"></el-input>
+          <el-input class="width250" :disabled="true" v-model.trim="form.fieldName"></el-input>
         </el-form-item>
       </el-form>
       <!-- 表格 -->
@@ -19,10 +19,13 @@
           :data="tableData"
           tooltip-effect="dark">
           <el-table-column
-            prop="number"
             label="枚举值编号"
             align="center"
             show-overflow-tooltip>
+            <template slot-scope="scope">
+              <el-input v-model.trim="scope.row.number"  v-if="false" size="mini"></el-input>
+              <div v-else>{{scope.row.number}}</div>
+            </template>
           </el-table-column>
           <el-table-column
             prop="value"
@@ -33,14 +36,14 @@
           <el-table-column
             label="操作"
             align="center"
-            width="160">
+            :width="detailBtn?'80':'160'">
             <template slot-scope="scope">
               <!-- <el-button
                 size="mini"
                 type="primary"
                 @click="handleEdit(scope.$index, scope.row)">修改</el-button> -->
-                <cdia-log title="编辑" size='mini' mold='1'></cdia-log>
-                <el-button size="mini" type="danger">删除</el-button>
+                <cdia-log :title="detailBtn?'详情':'编辑'" :type="detailBtn?'':'primary'" size='mini' :typeFlag="typeFlag" :detailBtn='detailBtn' :mr="detailBtn?'last':''"></cdia-log>
+                <el-button v-if="!detailBtn" size="mini" type="danger" @click="delTable(scope.$index)">删除</el-button>
               <!-- <el-button
                 size="mini"
                 @click="handleDetail(scope.$index, scope.row)">详情</el-button> -->
@@ -48,6 +51,8 @@
           </el-table-column>
         </el-table>
       </div>
+      <!-- 添加按钮 -->
+      <cdia-log v-if="!detailBtn" class="addBtn" type="" title="添 加" :typeFlag="typeFlag" size='mini' :btnWidth="true" @dialogSuccess="successCallback"></cdia-log>
       <el-pagination
         @size-change="handleSizeChange"
         @current-change="handleCurrentChange"
@@ -80,11 +85,15 @@ export default {
       type: String,
       default: 'primary'
     },
-    mold: {
-      type: String
-    },
     mr: {
       type: String
+    },
+    typeFlag: {
+      type: Number
+    },
+    detailBtn: {
+      type: Boolean,
+      default: false
     }
   },
   components: {
@@ -108,10 +117,19 @@ export default {
     }
   },
   methods: {
+    init () {
+      this.dialogFormVisible = true
+      this.tableData = [{
+        number: '00',
+        value: '鲜花'
+      }, {
+        number: '01',
+        value: '永生花礼盒'
+      }]
+    },
     submitForm (formName) {
       this.$refs[formName].validate((valid) => {
         if (valid) {
-          alert('submit!')
           this.dialogFormVisible = false
         } else {
           console.log('error submit!!')
@@ -124,6 +142,25 @@ export default {
       this.$refs['form'].resetFields()
       this.dialogFormVisible = false
     },
+    // 点击删除
+    delTable (flag) {
+      this.$confirm('您确定要<span class="red">删除</span>这个枚举吗？', {type: 'warning', dangerouslyUseHTMLString: true})
+        .then(_ => {
+          this.tableData.splice(flag, 1)
+          this.$message({
+            type: 'success',
+            message: '删除枚举成功!'
+          })
+        })
+        .catch(_ => {})
+    },
+    // 子组件成功回调
+    successCallback (params) {
+      this.tableData.push({
+        number: params.number,
+        value: params.value
+      })
+    },
     // 分页
     handleSizeChange (val) {
       console.log(`每页 ${val} 条`)
@@ -134,7 +171,7 @@ export default {
   }
 }
 </script>
-<style lang='stylus' ref='stylesheet/stylus'>
+<style lang='stylus' ref='stylesheet/stylus' scoped>
 .dialogProDic
   display inline-block
   .formTop
@@ -144,4 +181,8 @@ export default {
       margin-right 0px
     .width250
       width 250px
+  .addBtn
+    width 100%
+    height 50px
+    margin-top 18px
 </style>

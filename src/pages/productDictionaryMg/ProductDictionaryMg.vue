@@ -2,10 +2,10 @@
   <div class="productDictionaryMg">
     <el-form :inline="true" :model="searchData" ref="searchData" class="demo-form-inline" size='small'>
       <el-form-item label="字段" prop="field">
-        <el-input v-model="searchData.field" placeholder="请输入字段" clearable></el-input>
+        <el-input v-model.trim="searchData.field" placeholder="请输入字段" clearable></el-input>
       </el-form-item>
       <el-form-item label="字段名" prop="fieldName">
-        <el-input v-model="searchData.fieldName" placeholder="请输入字段名" clearable></el-input>
+        <el-input v-model.trim="searchData.fieldName" placeholder="请输入字段名" clearable></el-input>
       </el-form-item>
       <el-form-item>
         <el-button type="primary">查询</el-button>
@@ -55,8 +55,8 @@
               size="mini"
               type="primary"
               @click="handleEdit(scope.$index, scope.row)">修改</el-button> -->
-              <dia-log title="修改" size='mini' mold='1'></dia-log>
-              <dia-log title="详情" size='mini' type=""  mold='2' mr='last'></dia-log>
+              <dia-log title="修改" size='mini' :typeFlag="scope.row.typeFlag"></dia-log>
+              <dia-log title="详情" size='mini' type="" mr='last' :typeFlag="scope.row.typeFlag" :detailBtn="true"></dia-log>
             <!-- <el-button
               size="mini"
               @click="handleDetail(scope.$index, scope.row)">详情</el-button> -->
@@ -88,11 +88,18 @@ export default {
       tableData: [{
         field: 'product_sort',
         fieldName: '产品分类',
-        fieldType: '下拉列表'
+        fieldType: '下拉列表',
+        typeFlag: 1
       }, {
         field: 'product_brand',
         fieldName: '产品品牌',
-        fieldType: '下拉列表'
+        fieldType: '下拉列表',
+        typeFlag: 2
+      }, {
+        field: 'Selected_sort',
+        fieldName: '精选分类',
+        fieldType: '下拉列表',
+        typeFlag: 3
       }],
       currentPage: 2
     }

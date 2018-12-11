@@ -2,7 +2,7 @@
   <div class="operatorRoleMg">
     <el-form :inline="true" :model="searchData" ref="searchData" class="demo-form-inline" size='small'>
       <el-form-item label="角色名称" prop="roleName">
-        <el-input v-model="searchData.roleName" placeholder="请输入角色名称" clearable></el-input>
+        <el-input v-model.trim="searchData.roleName" placeholder="请输入角色名称" clearable></el-input>
       </el-form-item>
       <el-form-item>
         <el-button type="primary">查询</el-button>

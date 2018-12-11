@@ -2,19 +2,19 @@
   <div class="operatorInforMg">
     <el-form :inline="true" :model="searchData" ref="searchData" class="demo-form-inline" size='small' label-width="82px">
       <el-form-item label="操作员账号" prop="account">
-        <el-input v-model="searchData.account" placeholder="请输入操作员账号" clearable></el-input>
+        <el-input v-model.trim="searchData.account" placeholder="请输入操作员账号" clearable></el-input>
       </el-form-item>
       <el-form-item label="操作员姓名" prop="name">
-        <el-input v-model="searchData.name" placeholder="请输入操作员姓名" clearable></el-input>
+        <el-input v-model.trim="searchData.name" placeholder="请输入操作员姓名" clearable></el-input>
       </el-form-item>
       <el-form-item label="所属角色" prop="role">
-        <el-select v-model="searchData.role" placeholder="请选择所属角色" clearable>
+        <el-select v-model.trim="searchData.role" placeholder="请选择所属角色" clearable>
           <el-option label="全部" value="0"></el-option>
           <el-option label="超级管理员" value="1"></el-option>
         </el-select>
       </el-form-item>
       <el-form-item label="状态" prop="state">
-        <el-select v-model="searchData.state" placeholder="请选择状态" clearable>
+        <el-select v-model.trim="searchData.state" placeholder="请选择状态" clearable>
           <el-option label="全部" value="0"></el-option>
           <el-option label="启用" value="1"></el-option>
           <el-option label="停用" value="2"></el-option>

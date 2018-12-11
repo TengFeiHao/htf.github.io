@@ -11,6 +11,10 @@ import VeLine from 'v-charts/lib/line.common'
 import 'v-charts/lib/style.css'
 import Vehistogram from 'v-charts/lib/histogram.common'
 import 'echarts/lib/component/dataZoom'
+import VueQuillEditor from 'vue-quill-editor'
+import 'quill/dist/quill.core.css'
+import 'quill/dist/quill.snow.css'
+import 'quill/dist/quill.bubble.css'
 import {
   Pagination,
   Dialog,
@@ -80,6 +84,7 @@ import {
   Message,
   Notification
 } from 'element-ui'
+Vue.use(VueQuillEditor)
 Vue.component(VeLine.name, VeLine)
 Vue.component(Vehistogram.name, Vehistogram)
 Vue.use(vuescroll)

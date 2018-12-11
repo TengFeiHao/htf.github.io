@@ -1,15 +1,15 @@
 <template>
   <div class="dialogLevel" style="margin-right:10px">
     <el-button type="primary" @click="dialogFormVisible = true" :size="size">{{title}}</el-button>
-    <el-dialog :title="title" :visible.sync="dialogFormVisible" @close="closeForm"  width="500px" top="0">
+    <el-dialog :close-on-click-modal='false' :close-on-press-escape='false' :title="title" :visible.sync="dialogFormVisible" @close="closeForm"  width="500px" top="0">
       <el-form :model="form" :rules="rules" ref="form" size="small" :label-width="formLabelWidth">
         <el-form-item label="会员等级" prop="level">
-          <el-input :clearable="true" v-model="form.level" placeholder="请输入会员等级"></el-input>
+          <el-input :clearable="true" v-model.trim="form.level" placeholder="请输入会员等级"></el-input>
         </el-form-item>
         <el-form-item label="规则类型" prop="mRule">
           <el-select
             :clearable="true"
-            v-model="form.mRule"
+            v-model.trim="form.mRule"
             @change="select"
             placeholder="请选择规则类型">
             <el-option label="购买" value="1"></el-option>
@@ -18,14 +18,14 @@
           </el-select>
         </el-form-item>
         <el-form-item v-if="buyFlag" label="购买金额" prop="money">
-          <el-input :clearable="true" v-model="form.money" placeholder="请输入购买金额" style="width:199px"></el-input> 元
+          <el-input :clearable="true" v-model.trim="form.money" placeholder="请输入购买金额" style="width:199px"></el-input> 元
         </el-form-item>
         <el-form-item v-if="growUp" label="成长值范围" prop="start">
-          <el-input :clearable="true" v-model="form.start" style="width:134px"></el-input>
+          <el-input :clearable="true" v-model.trim="form.start" style="width:134px"></el-input>
           <span>=&lt;成长值&lt;=</span>
         </el-form-item>
         <el-form-item v-if="growUp" label="" prop="end" style="position:absolute;right:20px;bottom:92px">
-          <el-input :clearable="true" v-model="form.end" style="width:134px;"></el-input>
+          <el-input :clearable="true" v-model.trim="form.end" style="width:134px;"></el-input>
         </el-form-item>
       </el-form>
       <div slot="footer" class="dialog-footer">

@@ -2,7 +2,7 @@
   <div class="memberLevelMg">
     <el-form :inline="true" :model="searchData" ref="searchData" class="demo-form-inline" size='small'>
       <el-form-item label="会员等级" prop="MGrade">
-        <el-select v-model="searchData.MGrade" placeholder="请选择会员等级" clearable>
+        <el-select v-model.trim="searchData.MGrade" placeholder="请选择会员等级" clearable>
           <el-option label="全部" value="0"></el-option>
           <el-option label="普卡" value="1"></el-option>
           <el-option label="金卡" value="2"></el-option>

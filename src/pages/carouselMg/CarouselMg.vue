@@ -133,9 +133,6 @@ export default {
     DiaLog
   },
   methods: {
-    resetForm (formName) {
-      this.$refs[formName].resetFields()
-    },
     handleSelectionChange (val) {
       this.multipleSelection = val
       this.delflag = false
@@ -145,25 +142,6 @@ export default {
           return false
         }
       })
-    },
-    // 修改
-    handleEdit (param1, param2) {
-      alert(param1, param2)
-    },
-    // 详情
-    handleDetail (param1, param2) {
-      alert(param1, param2)
-    },
-    // 重置密码
-    resetPassword () {
-      this.$confirm('您确定要<span class="red">重置</span>被选中用户的密码吗？', {type: 'warning', dangerouslyUseHTMLString: true})
-        .then(_ => {
-          this.$message({
-            type: 'success',
-            message: '重置密码成功!'
-          })
-        })
-        .catch(_ => {})
     },
     // 停用
     stop () {
@@ -176,7 +154,6 @@ export default {
         })
         .catch(_ => {})
     },
-
     // 启用
     startUp () {
       this.$confirm('您确定要<span class="red">启用</span>被选中的图片吗？', {type: 'warning', dangerouslyUseHTMLString: true})
@@ -184,17 +161,6 @@ export default {
           this.$message({
             type: 'success',
             message: '启用图片成功!'
-          })
-        })
-        .catch(_ => {})
-    },
-    // 删除
-    delamin () {
-      this.$confirm('您确定要<span class="red">删除</span>被选中的用户吗？', {type: 'warning', dangerouslyUseHTMLString: true})
-        .then(_ => {
-          this.$message({
-            type: 'success',
-            message: '删除用户成功!'
           })
         })
         .catch(_ => {})

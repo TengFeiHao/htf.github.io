@@ -1,19 +1,19 @@
 <template>
   <div class="dialogCarous" :style="{'margin-right': mr==='last'?'0px':'10px'}">
     <el-button :type="type" @click="dialogFormVisible = true" :size="size">{{title}}</el-button>
-    <el-dialog :title="title" :visible.sync="dialogFormVisible" @close="closeForm"  width="500px" top="0">
+    <el-dialog :close-on-click-modal='false' :close-on-press-escape='false' :title="title" :visible.sync="dialogFormVisible" @close="closeForm"  width="500px" top="0">
       <el-form :model="form" :rules="rules" ref="form" size="small" :label-width="formLabelWidth">
         <el-form-item label="类型" prop="type">
-          <el-select :clearable="true" v-model="form.type" placeholder="请选择图片类型">
+          <el-select :clearable="true" v-model.trim="form.type" placeholder="请选择图片类型">
             <el-option label="商户App" value="1"></el-option>
             <el-option label="小程序" value="2"></el-option>
           </el-select>
         </el-form-item>
         <el-form-item label="图片名称" prop="imgName">
-          <el-input :clearable="true" v-model="form.imgName" placeholder="请输入图片名称"></el-input>
+          <el-input :clearable="true" v-model.trim="form.imgName" placeholder="请输入图片名称"></el-input>
         </el-form-item>
         <el-form-item label="状态" prop="state">
-          <el-select :clearable="true" v-model="form.state" placeholder="请选择图片状态">
+          <el-select :clearable="true" v-model.trim="form.state" placeholder="请选择图片状态">
             <el-option label="启用" value="1"></el-option>
             <el-option label="停用" value="2"></el-option>
           </el-select>
@@ -31,15 +31,15 @@
           </el-upload>
         </el-form-item>
         <el-form-item label="图片路径" prop="imgUrl">
-          <el-input :clearable="true" v-model="form.imgUrl" placeholder="请输入图片路径"></el-input>
+          <el-input :clearable="true" v-model.trim="form.imgUrl" placeholder="请输入图片路径"></el-input>
         </el-form-item>
         <el-form-item label="跳转地址" prop="jump">
-          <el-input :clearable="true" v-model="form.jump" placeholder="请输入图片跳转地址"></el-input>
+          <el-input :clearable="true" v-model.trim="form.jump" placeholder="请输入图片跳转地址"></el-input>
         </el-form-item>
         <el-form-item label="描述" prop="remarks">
           <el-input
             :clearable="true"
-            v-model="form.remarks"
+            v-model.trim="form.remarks"
             resize="none"
             type="textarea"
             :rows="3"
@@ -111,7 +111,6 @@ export default {
     submitForm (formName) {
       this.$refs[formName].validate((valid) => {
         if (valid) {
-          alert('submit!')
           this.dialogFormVisible = false
         } else {
           console.log('error submit!!')
@@ -124,7 +123,7 @@ export default {
       this.$refs['form'].resetFields()
       this.dialogFormVisible = false
     },
-    // 头像上传
+    // 图片上传
     handleAvatarSuccess (res, file) {
       this.form.imageUrl = URL.createObjectURL(file.raw)
       this.$refs.upload.clearValidate()

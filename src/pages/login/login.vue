@@ -13,7 +13,7 @@
               { required: true, message: '账号不能为空'},
             ]"
           >
-            <el-input :clearable="true" v-model="loginForm.account" autocomplete="off" placeholder="请输入用户账号"></el-input>
+            <el-input :clearable="true" v-model.trim="loginForm.account" autocomplete="off" placeholder="请输入用户账号"></el-input>
           </el-form-item>
           <el-form-item
             prop="password"
@@ -21,7 +21,7 @@
               { required: true, message: '密码不能为空'},
             ]"
           >
-            <el-input :clearable="true" type="password" v-model="loginForm.password" autocomplete="off" placeholder="请输入用户密码"></el-input>
+            <el-input :clearable="true" type="password" v-model.trim="loginForm.password" autocomplete="off" placeholder="请输入用户密码"></el-input>
           </el-form-item>
           <el-form-item>
             <el-button type="primary" @click="submitForm('loginForm')">登录</el-button>

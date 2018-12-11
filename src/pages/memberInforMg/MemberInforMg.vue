@@ -2,13 +2,13 @@
   <div class="memberInforMg">
     <el-form :inline="true" :model="searchData" ref="searchData" class="demo-form-inline" size='small' label-width="68px">
       <el-form-item label="昵称" prop="name">
-        <el-input v-model="searchData.name" placeholder="请输入昵称" clearable></el-input>
+        <el-input v-model.trim="searchData.name" placeholder="请输入昵称" clearable></el-input>
       </el-form-item>
       <el-form-item label="手机号" prop="phone">
-        <el-input v-model="searchData.phone" placeholder="请输入手机号" clearable></el-input>
+        <el-input v-model.trim="searchData.phone" placeholder="请输入手机号" clearable></el-input>
       </el-form-item>
       <el-form-item label="会员等级" prop="MGrade">
-        <el-select v-model="searchData.MGrade" placeholder="请选择会员等级" clearable>
+        <el-select v-model.trim="searchData.MGrade" placeholder="请选择会员等级" clearable>
           <el-option label="全部" value="0"></el-option>
           <el-option label="普卡" value="1"></el-option>
           <el-option label="金卡" value="2"></el-option>
@@ -20,7 +20,7 @@
         </el-select>
       </el-form-item>
       <el-form-item label="升级渠道" prop="channel">
-        <el-select v-model="searchData.channel" placeholder="请选择升级渠道" clearable>
+        <el-select v-model.trim="searchData.channel" placeholder="请选择升级渠道" clearable>
           <el-option label="常规" value="0"></el-option>
           <el-option label="购卡" value="1"></el-option>
           <el-option label="特权" value="2"></el-option>
